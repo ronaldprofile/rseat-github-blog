@@ -1,42 +1,38 @@
 import { GithubLogo, Users, Buildings, Link } from "phosphor-react";
+import { useGithubProfile } from "../../../hooks/api/useGithubProfile";
 import * as P from "./styles";
 
 export function Profile() {
+  const { data: user } = useGithubProfile();
+
   return (
     <P.StyledSectionProfile>
       <P.StyledSectionWrapper>
-        <img
-          src="https://github.com/ronaldprofile.png"
-          alt="foto de Ronald Tomaz"
-        />
+        <img src={user?.avatar_url} alt={`foto de ${user?.name}`} />
 
         <P.StyledSectionContent>
           <div className="section-header">
-            <strong>Ronald Tomaz</strong>
-            <a href="https://https://github.com/ronaldprofile" target="_blank">
+            <strong>{user?.name}</strong>
+            <a href={user?.html_url} target="_blank">
               github
-              <Link size={15}/>
+              <Link size={15} />
             </a>
           </div>
 
-          <p>
-            Tristique volutpat pulvinar vel massa, pellentesque egestas. Eu
-            viverra massa quam dignissim aenean malesuada suscipit. Nunc,
-            volutpat pulvinar vel mass.
-          </p>
+          <p>{user?.bio}</p>
 
           <div className="section-footer">
             <span>
               <GithubLogo />
-              ronaldprofile
+              {user?.login}
             </span>
             <span>
               <Buildings />
-              Avanz
+              {user?.company}
             </span>
             <span>
               <Users />
-              52 seguidores
+              {user?.followers} seguidores
             </span>
           </div>
         </P.StyledSectionContent>

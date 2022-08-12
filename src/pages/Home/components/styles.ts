@@ -24,6 +24,7 @@ export const StyledSectionContent = styled("div", {
   flexDirection: "column",
   alignItems: "stretch",
   justifyContent: "space-between",
+  flex: 1,
 
   ".section-header": {
     marginBottom: ".5rem",
